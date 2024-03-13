@@ -1,21 +1,24 @@
-body {
-  background-color: green;
-}
-
 .container-fluid {
   min-height: 100vh;
 }
 
 .card {
   aspect-ratio: 2.2/3;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
 }
 
 .fs-7 {
-  font-size: 5rem;
+  font-size: 6rem;
 }
 
 .grow {
   flex: 1;
+}
+
+.backwards {
+  transform: scale(-1, -1);
+}
+
+.box-shadow {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }

@@ -4,7 +4,19 @@ import "./style.css";
 const SUITS = ["♦", "♥", "♠", "♣"];
 const VALUES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
 
+let interval = 10000;
+
 window.onload = function() {
+  generateRandomCard();
+
+  setInterval(generateRandomCard, interval);
+
+  document.querySelector("#btn").onclick = function() {
+    generateRandomCard();
+  };
+};
+
+function generateRandomCard() {
   const suitTexts = document.querySelectorAll(".suit");
   const valueText = document.querySelector(".value");
 
@@ -18,4 +30,6 @@ window.onload = function() {
 
   valueText.textContent = VALUES[Math.floor(Math.random() * VALUES.length)];
   valueText.style.color = color;
-};
+
+  interval = 10000;
+}
