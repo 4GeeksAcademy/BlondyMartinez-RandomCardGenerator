@@ -1,9 +1,8 @@
-.container-fluid {
+body {
   min-height: 100vh;
 }
 
 .card {
-  aspect-ratio: 2.2/3;
   border-radius: 20px;
 }
 
@@ -25,4 +24,8 @@
 
 .suit {
   line-height: 75%;
+}
+
+.aspect-ratio {
+  aspect-ratio: 2.2/3;
 }
