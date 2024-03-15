@@ -31,8 +31,8 @@
       <div class="row d-flex justify-content-center align-items-center grow p-4">
         <div class="col-3">
           <div class="card d-flex justify-content-between px-4 box-shadow aspect-ratio">
-            <div class="row d-flex align-items-start">
-              <p class="fs-7 text-start suit">♠</p>
+            <div class="row">
+              <p class="fs-7 suit">♠</p>
             </div>
             <div class="row">
               <p class="fs-7 text-center value">7</p>
@@ -42,18 +42,22 @@
             </div>
           </div>
           <div class="d-flex justify-content-center">
-            <button class="btn btn-warning mt-5 box-shadow" id="btn">
+            <button class="btn btn-warning mt-3 box-shadow" id="btn">
               Generate New Card
             </button>
           </div>
-          <div class="d-flex flex-column">
-            <label for="width-range" class="form-label">Width</label>
-            <input type="range" class="width-range" id="width-range">
-            <label for="height-range" class="form-label">Height</label>
-            <input type="range" class="height-range" id="height-range">
+          <div class="d-flex flex-column mt-3 justify-content-center">
+            <div class="form-check form-switch">
+              <input class="form-check-input aspect-ratio-checkbox" type="checkbox" id="flexSwitchCheckChecked" checked>
+              <label class="form-check-label" for="flexSwitchCheckChecked">Preserve Aspect Ratio</label>
+            </div>
+            <label for="width-range" class="form-label">Width: <span id="width-value"></span></label>
+            <input type="range" class="width-range range-slider" id="width-range" disabled>
+            <label for="height-range" class="form-label">Height: <span id="height-value"></span></label>
+            <input type="range" class="height-range range-slider" id="height-range">
           </div>
       </div>
-      <div class="p-4 text-center">
+      <div class="p-2 text-center">
         Made with ❤️ by Blondy Martínez
       </div>
     </div>
