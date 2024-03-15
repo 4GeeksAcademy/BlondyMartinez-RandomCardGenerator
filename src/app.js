@@ -33,6 +33,7 @@ HEIGHT_SLIDER.addEventListener("input", updateSize);
 
 CHECKBOX.addEventListener("change", function() {
   setAspectRatioLock(CHECKBOX.checked);
+  updateSize();
 });
 
 function generateRandomCard() {
@@ -88,7 +89,6 @@ function setAspectRatioLock(enabled) {
     : CARD.classList.remove("aspect-ratio");
 
   toggleSlider(WIDTH_SLIDER, enabled);
-  console.log(enabled);
 }
 
 function updateSizeText() {
