@@ -27,5 +27,5 @@ body {
 }
 
 .aspect-ratio {
-  aspect-ratio: 2.2/3;
+  width: calc(2.2 * var(--height)) !important;
 }
