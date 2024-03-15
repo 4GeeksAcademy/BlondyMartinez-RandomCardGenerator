@@ -4,14 +4,15 @@ import "./style.css";
 const SUITS = ["♦", "♥", "♠", "♣"];
 const VALUES = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
 
-let interval = 10000;
+let intervalTime = 10000;
 
 generateRandomCard();
 
-setInterval(generateRandomCard, interval);
+let interval = setInterval(generateRandomCard, intervalTime);
 
 document.querySelector("#btn").onclick = function() {
   generateRandomCard();
+  resetInterval();
 };
 
 function generateRandomCard() {
@@ -28,4 +29,13 @@ function generateRandomCard() {
 
   valueText.textContent = VALUES[Math.floor(Math.random() * VALUES.length)];
   valueText.style.color = color;
+}
+
+function startInterval() {
+  interval = setInterval(generateRandomCard, intervalTime);
+}
+
+function resetInterval() {
+  clearInterval(interval);
+  startInterval();
 }
