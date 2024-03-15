@@ -16,16 +16,16 @@ const HEIGHT_SLIDER = document.querySelector("#height-range");
 
 generateRandomCard();
 startInterval();
-setSliderValues(WIDTH_SLIDER, INITIAL_WIDTH, INITIAL_WIDTH * 5);
-setSliderValues(HEIGHT_SLIDER, INITIAL_HEIGHT, INITIAL_HEIGHT * 5);
+setSliderValues(WIDTH_SLIDER, INITIAL_WIDTH, INITIAL_WIDTH * 4);
+setSliderValues(HEIGHT_SLIDER, INITIAL_HEIGHT, INITIAL_HEIGHT * 1.1);
 
 document.querySelector("#btn").onclick = function() {
   generateRandomCard();
   resetInterval();
 };
 
-WIDTH_SLIDER.addEventListener("change", updateWidth());
-HEIGHT_SLIDER.addEventListener("change", updateHeight());
+WIDTH_SLIDER.addEventListener("input", updateSize);
+HEIGHT_SLIDER.addEventListener("input", updateSize);
 
 function generateRandomCard() {
   const suitTexts = document.querySelectorAll(".suit");
@@ -57,6 +57,26 @@ function setSliderValues(slider, min, max) {
   slider.max = max;
 }
 
-function updateWidth() {}
+function updateSize() {
+  setAspectRatioLock(false);
 
-function updateHeight() {}
+  const currentWidth = CARD.offsetWidth;
+
+  CARD.style.width = WIDTH_SLIDER.value + "px";
+  CARD.style.height = HEIGHT_SLIDER.value + "px";
+
+  centerPivot(currentWidth);
+}
+
+function centerPivot(previousWidth) {
+  const newWidth = CARD.offsetWidth;
+  const offsetChange = (newWidth - previousWidth) / 2;
+  CARD.style.marginLeft =
+    parseFloat(CARD.style.marginLeft || 0) - offsetChange + "px";
+}
+
+function setAspectRatioLock(enabled) {
+  enabled
+    ? CARD.classList.add("aspect-ratio")
+    : CARD.classList.remove("aspect-ratio");
+}
