@@ -8,16 +8,20 @@ let intervalTime = 10000;
 let interval;
 
 const CARD = document.querySelector(".card");
+CARD.style.aspectRatio = "2.2/3";
+
 const INITIAL_WIDTH = CARD.offsetWidth;
 const INITIAL_HEIGHT = CARD.offsetHeight;
 
 const WIDTH_SLIDER = document.querySelector("#width-range");
 const HEIGHT_SLIDER = document.querySelector("#height-range");
+const CHECKBOX = document.querySelector(".aspect-ratio-checkbox");
 
 generateRandomCard();
 startInterval();
 setSliderValues(WIDTH_SLIDER, INITIAL_WIDTH, INITIAL_WIDTH * 4);
-setSliderValues(HEIGHT_SLIDER, INITIAL_HEIGHT, INITIAL_HEIGHT * 1.1);
+setSliderValues(HEIGHT_SLIDER, INITIAL_HEIGHT, INITIAL_WIDTH * (2.2 / 3) * 4);
+updateSizeText();
 
 document.querySelector("#btn").onclick = function() {
   generateRandomCard();
@@ -26,6 +30,10 @@ document.querySelector("#btn").onclick = function() {
 
 WIDTH_SLIDER.addEventListener("input", updateSize);
 HEIGHT_SLIDER.addEventListener("input", updateSize);
+
+CHECKBOX.addEventListener("change", function() {
+  setAspectRatioLock(CHECKBOX.checked);
+});
 
 function generateRandomCard() {
   const suitTexts = document.querySelectorAll(".suit");
@@ -58,13 +66,12 @@ function setSliderValues(slider, min, max) {
 }
 
 function updateSize() {
-  setAspectRatioLock(false);
-
   const currentWidth = CARD.offsetWidth;
 
   CARD.style.width = WIDTH_SLIDER.value + "px";
   CARD.style.height = HEIGHT_SLIDER.value + "px";
 
+  updateSizeText();
   centerPivot(currentWidth);
 }
 
@@ -79,4 +86,18 @@ function setAspectRatioLock(enabled) {
   enabled
     ? CARD.classList.add("aspect-ratio")
     : CARD.classList.remove("aspect-ratio");
+
+  toggleSlider(WIDTH_SLIDER, enabled);
+  console.log(enabled);
+}
+
+function updateSizeText() {
+  document.querySelector("#width-value").textContent =
+    WIDTH_SLIDER.value + "px";
+  document.querySelector("#height-value").textContent =
+    HEIGHT_SLIDER.value + "px";
+}
+
+function toggleSlider(slider, enabled) {
+  slider.disabled = enabled;
 }
